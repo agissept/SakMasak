@@ -4,19 +4,19 @@ import android.util.Log
 import id.agis.core.data.source.remote.network.ApiResponse
 import id.agis.core.data.source.remote.network.ApiService
 import id.agis.core.data.source.remote.response.detailrecipe.DetailRecipeResponse
-import id.agis.core.data.source.remote.response.ReceiptItemResponse
+import id.agis.core.data.source.remote.response.RecipeItemResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 
 class RemoteDataSource(private val apiService: ApiService) {
 
-    suspend fun getListReceipt(): Flow<ApiResponse<List<ReceiptItemResponse>>> {
+    suspend fun getListRecipe(): Flow<ApiResponse<List<RecipeItemResponse>>> {
         return flow {
             try {
-                val response = apiService.getListReceipt()
-                val dataArray = response.listReceipt
+                val response = apiService.getListRecipe()
+                val dataArray = response.listRecipe
                 if (dataArray.isNotEmpty()) {
-                    emit(ApiResponse.Success(response.listReceipt))
+                    emit(ApiResponse.Success(response.listRecipe))
                 } else {
                     emit(ApiResponse.Empty)
                 }

@@ -3,10 +3,10 @@ package id.agis.core
 import id.agis.core.data.source.Resource
 import id.agis.core.domain.model.Author
 import id.agis.core.domain.model.DetailRecipe
-import id.agis.core.domain.model.ReceiptItem
-import id.agis.core.domain.repository.IReceiptRepository
-import id.agis.core.domain.usecase.ReceiptInteractor
-import id.agis.core.domain.usecase.ReceiptUseCase
+import id.agis.core.domain.model.RecipeItem
+import id.agis.core.domain.repository.IRecipeRepository
+import id.agis.core.domain.usecase.RecipeInteractor
+import id.agis.core.domain.usecase.RecipeUseCase
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
@@ -20,22 +20,22 @@ import org.mockito.junit.MockitoJUnitRunner
 
 
 @RunWith(MockitoJUnitRunner::class)
-class GetReceiptTest {
+class GetRecipeTest {
 
     @Mock
-    private lateinit var receiptRepository: IReceiptRepository
-    private lateinit var receiptUseCase: ReceiptUseCase
+    private lateinit var recipeRepository: IRecipeRepository
+    private lateinit var recipeUseCase: RecipeUseCase
 
     @Before
     fun setUp() {
-        receiptUseCase = ReceiptInteractor(receiptRepository)
+        recipeUseCase = RecipeInteractor(recipeRepository)
     }
 
     @Test
-    fun `when get list receipt is success`() = runBlocking {
+    fun `when get list recipe is success`() = runBlocking {
         val dummyResource = Resource.Success(
             listOf(
-                ReceiptItem(
+                RecipeItem(
                     title = "Resep Rendang Daging Sapi Paling Istimewa",
                     thumb = "https://www.masakapahariini.com/wp-content/uploads/2018/04/resep-rendang-daging-sapi-400x240.jpg",
                     key = "resep-rendang-daging-sapi",
@@ -43,7 +43,7 @@ class GetReceiptTest {
                     portion = "6 Porsi",
                     difficulty = "Level Chef Panji"
                 ),
-                ReceiptItem(
+                RecipeItem(
                     title = "Resep Lemper Ayam Bumbu Rendang, Camilan Tradisional yang Enak",
                     thumb = "https://www.masakapahariini.com/wp-content/uploads/2018/11/lemper-ayam-bumbu-rendang-MAHI-1-400x240.jpg",
                     key = "resep-lemper-ayam-bumbu-rendang",
@@ -54,12 +54,12 @@ class GetReceiptTest {
             )
         )
 
-        `when`(receiptRepository.getListReceipt()).thenReturn(flow {
+        `when`(recipeRepository.getListRecipe()).thenReturn(flow {
             emit(dummyResource)
         })
 
-        val listReceipt = receiptUseCase.getListReceipt().first().data
-        assertEquals(dummyResource.data, listReceipt)
+        val listRecipe = recipeUseCase.getListRecipe().first().data
+        assertEquals(dummyResource.data, listRecipe)
     }
 
     @Test
@@ -78,13 +78,13 @@ class GetReceiptTest {
             )
         )
 
-        val receiptKey = "resep-rendang-daging-sapi"
+        val recipeKey = "resep-rendang-daging-sapi"
 
-        `when`(receiptRepository.getDetailRecipe(receiptKey)).thenReturn(flow {
+        `when`(recipeRepository.getDetailRecipe(recipeKey)).thenReturn(flow {
             emit(dummyResource)
         })
 
-        val receipt = receiptUseCase.getDetailRecipe(receiptKey).first().data
-        assertEquals(dummyResource.data, receipt)
+        val recipe = recipeUseCase.getDetailRecipe(recipeKey).first().data
+        assertEquals(dummyResource.data, recipe)
     }
 }

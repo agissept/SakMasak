@@ -1,9 +1,9 @@
 package id.agis.core.di
 
-import id.agis.core.data.source.ReceiptRepository
+import id.agis.core.data.source.RecipeRepository
 import id.agis.core.data.source.remote.RemoteDataSource
 import id.agis.core.data.source.remote.network.ApiService
-import id.agis.core.domain.repository.IReceiptRepository
+import id.agis.core.domain.repository.IRecipeRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -31,7 +31,7 @@ val networkModule = module {
 
 val repositoryModule = module {
     single { RemoteDataSource(get()) }
-    single<IReceiptRepository> {
-        ReceiptRepository(get())
+    single<IRecipeRepository> {
+        RecipeRepository(get())
     }
 }
