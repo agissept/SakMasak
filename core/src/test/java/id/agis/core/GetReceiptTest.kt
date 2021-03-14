@@ -23,13 +23,15 @@ class GetReceiptTest {
     @Mock
     private lateinit var receiptRepository: IReceiptRepository
     private lateinit var receiptUseCase: ReceiptUseCase
-    private lateinit var dummyResource: Resource<List<ReceiptItem>>
 
     @Before
     fun setUp() {
         receiptUseCase = ReceiptInteractor(receiptRepository)
+    }
 
-        dummyResource = Resource.Success(
+    @Test
+    fun `when get list receipt is success`() = runBlocking {
+        val dummyResource = Resource.Success(
             listOf(
                 ReceiptItem(
                     title = "Resep Rendang Daging Sapi Paling Istimewa",
@@ -49,10 +51,7 @@ class GetReceiptTest {
                 )
             )
         )
-    }
 
-    @Test
-    fun `when get list receipt is success`() = runBlocking {
         `when`(receiptRepository.getListReceipt()).thenReturn(flow {
             emit(dummyResource)
         })
