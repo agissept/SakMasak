@@ -21,7 +21,7 @@ val networkModule = module {
     }
     single {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://masak-apa-tomorisakura.vercel.app/api")
+            .baseUrl("https://masak-apa-tomorisakura.vercel.app/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()
