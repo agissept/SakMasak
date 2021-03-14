@@ -1,6 +1,8 @@
 package id.agis.core
 
 import id.agis.core.data.source.Resource
+import id.agis.core.domain.model.Author
+import id.agis.core.domain.model.DetailRecipe
 import id.agis.core.domain.model.ReceiptItem
 import id.agis.core.domain.repository.IReceiptRepository
 import id.agis.core.domain.usecase.ReceiptInteractor
@@ -58,5 +60,31 @@ class GetReceiptTest {
 
         val listReceipt = receiptUseCase.getListReceipt().first().data
         assertEquals(dummyResource.data, listReceipt)
+    }
+
+    @Test
+    fun `when get detail recipe is success`() = runBlocking {
+        val dummyResource = Resource.Success(
+            DetailRecipe(
+                title = "Rendang Daging Sapi",
+                thumb = "Gambar rendang",
+                servings = "4 Porsi",
+                times = "1jam 30mnt",
+                difficulty = "Cukup Rumit",
+                author = Author(user = "Asep", datePublished = "Juni 2020"),
+                desc = "Ini adalaha makanan",
+                ingredient = listOf("garam", "sapi"),
+                step = listOf("direbus", "digoreng")
+            )
+        )
+
+        val receiptKey = "resep-rendang-daging-sapi"
+
+        `when`(receiptRepository.getDetailRecipe(receiptKey)).thenReturn(flow {
+            emit(dummyResource)
+        })
+
+        val receipt = receiptUseCase.getDetailRecipe(receiptKey).first().data
+        assertEquals(dummyResource.data, receipt)
     }
 }
