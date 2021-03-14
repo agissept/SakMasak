@@ -6,7 +6,7 @@ import id.agis.core.data.source.remote.response.detailrecipe.DetailRecipeRespons
 import id.agis.core.data.source.remote.response.RecipeItemResponse
 import id.agis.core.domain.model.DetailRecipe
 import id.agis.core.domain.model.RecipeItem
-import id.agis.core.domain.model.toDomainModel
+import id.agis.core.utils.toDomainModel
 import id.agis.core.domain.repository.IRecipeRepository
 import kotlinx.coroutines.flow.Flow
 

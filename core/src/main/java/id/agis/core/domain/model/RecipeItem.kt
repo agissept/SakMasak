@@ -10,14 +10,3 @@ data class RecipeItem(
     val portion: String,
     val difficulty: String
 )
-
-fun RecipeItemResponse.toDomainModel(): RecipeItem {
-    return RecipeItem(
-        title = title,
-        thumb = thumb,
-        key = key,
-        times = times,
-        portion = portion,
-        difficulty = difficulty
-    )
-}

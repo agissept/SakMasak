@@ -30,18 +30,3 @@ data class Author(
     @field:SerializedName("datePublished")
     val datePublished: String
 )
-
-
-fun DetailRecipeResponse.toDomainModel(): DetailRecipe {
-    return DetailRecipe(
-        title = title,
-        thumb = thumb,
-        servings = servings,
-        times = times,
-        difficulty = difficulty,
-        author = Author(author.user, author.datePublished),
-        desc = desc,
-        ingredient = ingredient,
-        step = step,
-    )
-}
