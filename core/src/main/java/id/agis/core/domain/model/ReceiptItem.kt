@@ -1,8 +1,8 @@
 package id.agis.core.domain.model
 
-import id.agis.core.data.source.remote.response.ReceiptResponse
+import id.agis.core.data.source.remote.response.ReceiptItemResponse
 
-data class Receipt(
+data class ReceiptItem(
     val title: String,
     val thumb: String,
     val key: String,
@@ -11,8 +11,8 @@ data class Receipt(
     val difficulty: String
 )
 
-fun ReceiptResponse.toDomainModel(): Receipt {
-    return Receipt(
+fun ReceiptItemResponse.toDomainModel(): ReceiptItem {
+    return ReceiptItem(
         title = title,
         thumb = thumb,
         key = key,

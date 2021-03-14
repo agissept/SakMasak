@@ -3,13 +3,13 @@ package id.agis.core.data.source.remote
 import android.util.Log
 import id.agis.core.data.source.remote.network.ApiResponse
 import id.agis.core.data.source.remote.network.ApiService
-import id.agis.core.data.source.remote.response.ReceiptResponse
+import id.agis.core.data.source.remote.response.ReceiptItemResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 
 class RemoteDataSource(private val apiService: ApiService) {
 
-    suspend fun getListReceipt(): Flow<ApiResponse<List<ReceiptResponse>>> {
+    suspend fun getListReceipt(): Flow<ApiResponse<List<ReceiptItemResponse>>> {
         return flow {
             try {
                 val response = apiService.getListReceipt()

@@ -2,7 +2,7 @@ package id.agis.core.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class ReceiptResponse(
+data class ReceiptItemResponse(
     @field:SerializedName("title")
     val title: String,
 

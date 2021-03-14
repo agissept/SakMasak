@@ -1,7 +1,7 @@
 package id.agis.core
 
 import id.agis.core.data.source.Resource
-import id.agis.core.domain.model.Receipt
+import id.agis.core.domain.model.ReceiptItem
 import id.agis.core.domain.repository.IReceiptRepository
 import id.agis.core.domain.usecase.ReceiptInteractor
 import id.agis.core.domain.usecase.ReceiptUseCase
@@ -23,7 +23,7 @@ class GetReceiptTest {
     @Mock
     private lateinit var receiptRepository: IReceiptRepository
     private lateinit var receiptUseCase: ReceiptUseCase
-    private lateinit var dummyResource: Resource<List<Receipt>>
+    private lateinit var dummyResource: Resource<List<ReceiptItem>>
 
     @Before
     fun setUp() {
@@ -31,7 +31,7 @@ class GetReceiptTest {
 
         dummyResource = Resource.Success(
             listOf(
-                Receipt(
+                ReceiptItem(
                     title = "Resep Rendang Daging Sapi Paling Istimewa",
                     thumb = "https://www.masakapahariini.com/wp-content/uploads/2018/04/resep-rendang-daging-sapi-400x240.jpg",
                     key = "resep-rendang-daging-sapi",
@@ -39,7 +39,7 @@ class GetReceiptTest {
                     portion = "6 Porsi",
                     difficulty = "Level Chef Panji"
                 ),
-                Receipt(
+                ReceiptItem(
                     title = "Resep Lemper Ayam Bumbu Rendang, Camilan Tradisional yang Enak",
                     thumb = "https://www.masakapahariini.com/wp-content/uploads/2018/11/lemper-ayam-bumbu-rendang-MAHI-1-400x240.jpg",
                     key = "resep-lemper-ayam-bumbu-rendang",
