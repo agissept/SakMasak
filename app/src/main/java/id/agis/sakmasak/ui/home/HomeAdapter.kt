@@ -1,4 +1,4 @@
-package id.agis.sakmasak.ui
+package id.agis.sakmasak.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import coil.load
 import id.agis.core.domain.model.RecipeItem
 import id.agis.sakmasak.databinding.ItemRecipeBinding
 
-class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
+class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
     private val listRecipe = mutableListOf<RecipeItem>()
 
     fun setItem(listRecipe: List<RecipeItem>) {

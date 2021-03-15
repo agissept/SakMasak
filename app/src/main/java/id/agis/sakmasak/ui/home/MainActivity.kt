@@ -1,4 +1,4 @@
-package id.agis.sakmasak.ui
+package id.agis.sakmasak.ui.home
 
 import android.os.Bundle
 import android.view.View
@@ -12,10 +12,10 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: MainViewModel by viewModel()
+    private val viewModel: HomeActivity by viewModel()
 
-    lateinit var binding: ActivityMainBinding
-    lateinit var adapter: RecipeAdapter
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: HomeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        adapter = RecipeAdapter()
+        adapter = HomeAdapter()
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
     }

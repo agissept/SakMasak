@@ -1,9 +1,9 @@
-package id.agis.sakmasak.ui
+package id.agis.sakmasak.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import id.agis.core.domain.usecase.RecipeUseCase
 
-class MainViewModel(useCase: RecipeUseCase) : ViewModel() {
+class HomeActivity(useCase: RecipeUseCase) : ViewModel() {
     val listRecipe = useCase.getListRecipe().asLiveData()
 }
