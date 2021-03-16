@@ -31,7 +31,7 @@ class RemoteDataSource(private val apiService: ApiService) {
     suspend fun getDetailRecipe(recipeKey: String): Flow<ApiResponse<DetailRecipeResponse>> {
         return flow {
             try {
-                val response = apiService.getDetailRecipe(recipeKey).result
+                val response = apiService.getDetailRecipe(recipeKey).results
                 emit(ApiResponse.Success(response))
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
