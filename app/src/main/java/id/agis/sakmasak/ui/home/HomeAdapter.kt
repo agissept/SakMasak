@@ -1,11 +1,14 @@
 package id.agis.sakmasak.ui.home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import id.agis.core.domain.model.RecipeItem
 import id.agis.sakmasak.databinding.ItemRecipeBinding
+import id.agis.sakmasak.ui.detail.DetailActivity
+import id.agis.sakmasak.ui.detail.DetailActivity.Companion.EXTRA_RECIPE_KEY
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
     private val listRecipe = mutableListOf<RecipeItem>()
@@ -29,6 +32,15 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
                 tvPortion.text = portion
                 tvTimes.text = times
                 ivThumb.load(thumb)
+            }
+        }
+
+        holder.itemView.setOnClickListener {
+            with(holder.itemView.context) {
+                val intent = Intent(this, DetailActivity::class.java).apply {
+                    putExtra(EXTRA_RECIPE_KEY, recipe.key)
+                }
+                startActivity(intent)
             }
         }
     }
