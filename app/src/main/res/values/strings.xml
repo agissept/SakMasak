@@ -2,4 +2,6 @@
     <string name="app_name">Sakmasak</string>
     <string name="greeting_message">Kuy masak</string>
     <string name="recipe_image">Recipe Image</string>
+    <string name="ingredients">Bahan-bahan</string>
+    <string name="how_to">Cara Membuat</string>
 </resources>
