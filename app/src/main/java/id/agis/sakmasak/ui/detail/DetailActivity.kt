@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import id.agis.core.data.source.Resource
+import id.agis.sakmasak.R
 import id.agis.sakmasak.databinding.ActivityDetailBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -16,6 +17,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var ingredientAdapter: DetailAdapter
     private lateinit var stepAdapter: DetailAdapter
+    var isFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +26,31 @@ class DetailActivity : AppCompatActivity() {
 
         initIngredientRecyclerView()
         initStepRecyclerView()
+        initFavoriteButton()
 
         val recipeKey = intent.getStringExtra(EXTRA_RECIPE_KEY)
         if (recipeKey !== null) {
             observeDetailRecipe(recipeKey)
+        }
+    }
+
+    private fun initFavoriteButton() {
+        changeButtonFavorite()
+        binding.btnFavorite.setOnClickListener {
+            isFavorite = if(isFavorite){
+                false
+            }else{
+                true
+            }
+            changeButtonFavorite()
+        }
+    }
+
+    private fun changeButtonFavorite(){
+        if(isFavorite){
+            binding.btnFavorite.load(R.drawable.ic_baseline_favorite_border_24)
+        }else{
+            binding.btnFavorite.load(R.drawable.ic_baseline_favorite_24)
         }
     }
 
