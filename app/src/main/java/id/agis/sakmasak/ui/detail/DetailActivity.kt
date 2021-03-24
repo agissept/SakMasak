@@ -23,7 +23,7 @@ class DetailActivity : AppCompatActivity() {
 
     //TODO remove double bang !!
     private val recipeKey by lazy { intent.getStringExtra(EXTRA_RECIPE_KEY)!! }
-    var isFavorite = false
+    private var isFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
