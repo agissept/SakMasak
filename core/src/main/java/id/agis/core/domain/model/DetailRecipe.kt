@@ -6,7 +6,7 @@ import id.agis.core.data.source.remote.response.detailrecipe.DetailRecipeRespons
 data class DetailRecipe(
     val title: String,
 
-    val thumb: String,
+    val thumb: String?,
 
     val servings: String,
 
