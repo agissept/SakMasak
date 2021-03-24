@@ -1,12 +1,16 @@
 package id.agis.sakmasak.ui.home
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import id.agis.core.data.source.Resource
+import id.agis.sakmasak.R
 import id.agis.sakmasak.databinding.ActivityMainBinding
 import id.agis.sakmasak.ui.home.loader.HomeLoadStateAdapter
 import kotlinx.coroutines.flow.collectLatest
@@ -63,6 +67,12 @@ class HomeActivity : AppCompatActivity() {
             }
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
     }
 
 }
