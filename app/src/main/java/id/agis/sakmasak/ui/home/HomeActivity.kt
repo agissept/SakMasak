@@ -1,7 +1,9 @@
 package id.agis.sakmasak.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +17,7 @@ import id.agis.sakmasak.databinding.ActivityMainBinding
 import id.agis.sakmasak.ui.home.loader.HomeLoadStateAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import id.agis.sakmasak.ui.favorite.FavoriteActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -72,6 +75,15 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        if (item.itemId == R.id.menu_favorite) {
+            val intent = Intent(this, FavoriteActivity::class.java)
+            startActivity(intent)
+        }
         return true
     }
 
