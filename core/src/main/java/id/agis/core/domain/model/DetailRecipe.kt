@@ -1,7 +1,6 @@
 package id.agis.core.domain.model
 
 import com.google.gson.annotations.SerializedName
-import id.agis.core.data.source.remote.response.detailrecipe.DetailRecipeResponse
 
 data class DetailRecipe(
     val title: String,
