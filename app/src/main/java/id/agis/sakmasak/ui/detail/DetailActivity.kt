@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import id.agis.core.data.source.Resource
+import id.agis.core.domain.model.DetailRecipe
+import id.agis.core.domain.model.RecipeItem
 import id.agis.sakmasak.R
 import id.agis.sakmasak.databinding.ActivityDetailBinding
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -17,6 +19,10 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var ingredientAdapter: DetailAdapter
     private lateinit var stepAdapter: DetailAdapter
+    private var recipeItem: RecipeItem? = null
+
+    //TODO remove double bang !!
+    private val recipeKey by lazy { intent.getStringExtra(EXTRA_RECIPE_KEY)!! }
     var isFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,31 +32,33 @@ class DetailActivity : AppCompatActivity() {
 
         initIngredientRecyclerView()
         initStepRecyclerView()
-        initFavoriteButton()
 
-        val recipeKey = intent.getStringExtra(EXTRA_RECIPE_KEY)
-        if (recipeKey !== null) {
-            observeDetailRecipe(recipeKey)
-        }
+        observeDetailRecipe(recipeKey)
+        initFavoriteButton()
     }
 
     private fun initFavoriteButton() {
+        isFavorite = viewModel.getFavoriteRecipeById(recipeKey) != null
         changeButtonFavorite()
         binding.btnFavorite.setOnClickListener {
-            isFavorite = if(isFavorite){
-                false
-            }else{
-                true
+            if (recipeItem != null) {
+                isFavorite = if (!isFavorite) {
+                    viewModel.addRecipeToFavorite(recipeItem!!)
+                    true
+                } else {
+                    viewModel.removeRecipeFromFavorite(recipeItem!!)
+                    false
+                }
+                changeButtonFavorite()
             }
-            changeButtonFavorite()
         }
     }
 
-    private fun changeButtonFavorite(){
-        if(isFavorite){
-            binding.btnFavorite.load(R.drawable.ic_baseline_favorite_border_24)
-        }else{
+    private fun changeButtonFavorite() {
+        if (isFavorite) {
             binding.btnFavorite.load(R.drawable.ic_baseline_favorite_24)
+        } else {
+            Toast.makeText(this, isFavorite.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -78,15 +86,7 @@ class DetailActivity : AppCompatActivity() {
                         binding.mainView.visibility = View.VISIBLE
                         binding.progressCircular.visibility = View.GONE
                         //TODO remove double bang !!
-                        with(it.data!!) {
-                            binding.ivThumb.load(thumb)
-                            binding.tvTitle.text = title
-                            binding.tvServings.text = servings
-                            binding.tvDifficulty.text = difficulty
-                            binding.tvTimes.text = times
-                            ingredientAdapter.setItem(ingredient)
-                            stepAdapter.setItem(step)
-                        }
+                        showDataToUI(it.data!!)
                     }
                     is Resource.Error -> {
                         Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
@@ -96,6 +96,29 @@ class DetailActivity : AppCompatActivity() {
 
         })
 
+    }
+
+    private fun showDataToUI(recipe: DetailRecipe) {
+        with(recipe) {
+            binding.ivThumb.load(thumb)
+            binding.tvTitle.text = title
+            binding.tvServings.text = servings
+            binding.tvDifficulty.text = difficulty
+            binding.tvTimes.text = times
+            ingredientAdapter.setItem(ingredient)
+            stepAdapter.setItem(step)
+        }
+
+        recipeItem = with(recipe) {
+            return@with RecipeItem(
+                title = title,
+                thumb = thumb ?: "",
+                key = recipeKey,
+                times = times,
+                portion = servings,
+                difficulty = difficulty,
+            )
+        }
     }
 
     companion object {
