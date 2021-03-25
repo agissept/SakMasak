@@ -58,7 +58,7 @@ class DetailActivity : AppCompatActivity() {
         if (isFavorite) {
             binding.btnFavorite.load(R.drawable.ic_baseline_favorite_24)
         } else {
-            Toast.makeText(this, isFavorite.toString(), Toast.LENGTH_SHORT).show()
+            binding.btnFavorite.load(R.drawable.ic_baseline_favorite_border_24)
         }
     }
 
