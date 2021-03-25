@@ -4,4 +4,5 @@
     <string name="recipe_image">Recipe Image</string>
     <string name="ingredients">Bahan-bahan</string>
     <string name="how_to">Cara Membuat</string>
+    <string name="retry">Retry</string>
 </resources>
