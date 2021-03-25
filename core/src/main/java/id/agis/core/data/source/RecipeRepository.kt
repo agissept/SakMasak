@@ -56,6 +56,7 @@ class RecipeRepository(
 
     override fun addRecipeToFavorite(recipe: RecipeItem) {
         val recipeEntity: RecipeEntity = recipe.toEntityModel()
+        //TODO change runBlocking to suspend function
         runBlocking {
             localDataSource.addRecipeToFavorite(recipeEntity)
         }
