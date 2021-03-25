@@ -58,4 +58,7 @@ dependencies {
 
     testImplementation "org.mockito:mockito-core:$mockito_version"
     testImplementation "org.mockito:mockito-inline:$mockito_version"
+
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+
 }
