@@ -21,8 +21,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var stepAdapter: DetailAdapter
     private var recipeItem: RecipeItem? = null
 
-    //TODO remove double bang !!
-    private val recipeKey by lazy { intent.getStringExtra(EXTRA_RECIPE_KEY)!! }
+    private val recipeKey by lazy { intent.getStringExtra(EXTRA_RECIPE_KEY) ?: "" }
     private var isFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +32,7 @@ class DetailActivity : AppCompatActivity() {
         initIngredientRecyclerView()
         initStepRecyclerView()
 
-        observeDetailRecipe(recipeKey)
+        observeDetailRecipe()
         initFavoriteButton()
     }
 
@@ -42,16 +41,16 @@ class DetailActivity : AppCompatActivity() {
         viewModel.recipe.observe(this, {
             if (it != null) {
                 isFavorite = true
-                changeButtonFavorite ()
+                changeButtonFavorite()
             }
         })
         binding.btnFavorite.setOnClickListener {
-            if (recipeItem != null) {
+            recipeItem?.let {
                 isFavorite = if (!isFavorite) {
-                    viewModel.addRecipeToFavorite(recipeItem!!)
+                    viewModel.addRecipeToFavorite(it)
                     true
                 } else {
-                    viewModel.removeRecipeFromFavorite(recipeItem!!)
+                    viewModel.removeRecipeFromFavorite(it)
                     false
                 }
                 changeButtonFavorite()
@@ -80,7 +79,7 @@ class DetailActivity : AppCompatActivity() {
         binding.rvIngredient.layoutManager = LinearLayoutManager(this)
     }
 
-    private fun observeDetailRecipe(recipeKey: String) {
+    private fun observeDetailRecipe() {
         viewModel.getGetDetailRecipe(recipeKey).observe(this, {
             if (it.data != null) {
                 when (it) {
@@ -91,8 +90,9 @@ class DetailActivity : AppCompatActivity() {
                     is Resource.Success -> {
                         binding.mainView.visibility = View.VISIBLE
                         binding.progressCircular.visibility = View.GONE
-                        //TODO remove double bang !!
-                        showDataToUI(it.data!!)
+                        it.data?.let { detailRecipe ->
+                            showDataToUI(detailRecipe)
+                        }
                     }
                     is Resource.Error -> {
                         Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
