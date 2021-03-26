@@ -10,7 +10,6 @@ interface RecipeDao {
     @Query("SELECT * FROM recipe")
     fun getAllFavoriteRecipe(): Flow<List<RecipeEntity>>
 
-    //TODO use Flow<List<RecipeItem>>
     @Query("SELECT * FROM recipe WHERE `key` =:recipeKey")
     suspend fun getFavoriteRecipeById(recipeKey: String): RecipeItem?
 
