@@ -1,11 +1,15 @@
 package id.agis.core.di
 
+import androidx.room.Room
 import id.agis.core.data.source.RecipeRepository
+import id.agis.core.data.source.local.LocalDataSource
+import id.agis.core.data.source.local.room.RecipeDatabase
 import id.agis.core.data.source.remote.RemoteDataSource
 import id.agis.core.data.source.remote.network.ApiService
 import id.agis.core.domain.repository.IRecipeRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -29,9 +33,21 @@ val networkModule = module {
     }
 }
 
+val databaseModule = module {
+    factory { get<RecipeDatabase>().recipeDao() }
+    single {
+        Room.databaseBuilder(
+            androidContext(),
+            RecipeDatabase::class.java, "recipe.db"
+        ).fallbackToDestructiveMigration().build()
+    }
+}
+
+
 val repositoryModule = module {
     single { RemoteDataSource(get()) }
+    single { LocalDataSource(get()) }
     single<IRecipeRepository> {
-        RecipeRepository(get())
+        RecipeRepository(get(), get())
     }
 }

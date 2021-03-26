@@ -7,6 +7,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import id.agis.core.data.source.Resource
+import id.agis.core.domain.model.DetailRecipe
+import id.agis.core.domain.model.RecipeItem
+import id.agis.sakmasak.R
 import id.agis.sakmasak.databinding.ActivityDetailBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -16,6 +19,10 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var ingredientAdapter: DetailAdapter
     private lateinit var stepAdapter: DetailAdapter
+    private var recipeItem: RecipeItem? = null
+
+    private val recipeKey by lazy { intent.getStringExtra(EXTRA_RECIPE_KEY) ?: "" }
+    private var isFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,9 +32,37 @@ class DetailActivity : AppCompatActivity() {
         initIngredientRecyclerView()
         initStepRecyclerView()
 
-        val recipeKey = intent.getStringExtra(EXTRA_RECIPE_KEY)
-        if (recipeKey !== null) {
-            observeDetailRecipe(recipeKey)
+        observeDetailRecipe()
+        initFavoriteButton()
+    }
+
+    private fun initFavoriteButton() {
+        viewModel.getFavoriteRecipeById(recipeKey)
+        viewModel.recipe.observe(this, {
+            if (it != null) {
+                isFavorite = true
+                changeButtonFavorite()
+            }
+        })
+        binding.btnFavorite.setOnClickListener {
+            recipeItem?.let {
+                isFavorite = if (!isFavorite) {
+                    viewModel.addRecipeToFavorite(it)
+                    true
+                } else {
+                    viewModel.removeRecipeFromFavorite(it)
+                    false
+                }
+                changeButtonFavorite()
+            }
+        }
+    }
+
+    private fun changeButtonFavorite() {
+        if (isFavorite) {
+            binding.btnFavorite.load(R.drawable.ic_baseline_favorite_24)
+        } else {
+            binding.btnFavorite.load(R.drawable.ic_baseline_favorite_border_24)
         }
     }
 
@@ -43,7 +78,7 @@ class DetailActivity : AppCompatActivity() {
         binding.rvIngredient.layoutManager = LinearLayoutManager(this)
     }
 
-    private fun observeDetailRecipe(recipeKey: String) {
+    private fun observeDetailRecipe() {
         viewModel.getGetDetailRecipe(recipeKey).observe(this, {
             if (it.data != null) {
                 when (it) {
@@ -54,15 +89,8 @@ class DetailActivity : AppCompatActivity() {
                     is Resource.Success -> {
                         binding.mainView.visibility = View.VISIBLE
                         binding.progressCircular.visibility = View.GONE
-                        //TODO remove double bang !!
-                        with(it.data!!) {
-                            binding.ivThumb.load(thumb)
-                            binding.tvTitle.text = title
-                            binding.tvServings.text = servings
-                            binding.tvDifficulty.text = difficulty
-                            binding.tvTimes.text = times
-                            ingredientAdapter.setItem(ingredient)
-                            stepAdapter.setItem(step)
+                        it.data?.let { detailRecipe ->
+                            showDataToUI(detailRecipe)
                         }
                     }
                     is Resource.Error -> {
@@ -73,6 +101,29 @@ class DetailActivity : AppCompatActivity() {
 
         })
 
+    }
+
+    private fun showDataToUI(recipe: DetailRecipe) {
+        with(recipe) {
+            binding.ivThumb.load(thumb)
+            binding.tvTitle.text = title
+            binding.tvServings.text = servings
+            binding.tvDifficulty.text = difficulty
+            binding.tvTimes.text = times
+            ingredientAdapter.setItem(ingredient)
+            stepAdapter.setItem(step)
+        }
+
+        recipeItem = with(recipe) {
+            return@with RecipeItem(
+                title = title,
+                thumb = thumb ?: "",
+                key = recipeKey,
+                times = times,
+                portion = servings,
+                difficulty = difficulty,
+            )
+        }
     }
 
     companion object {

@@ -31,36 +31,36 @@ class GetRecipeTest {
         recipeUseCase = RecipeInteractor(recipeRepository)
     }
 
-    @Test
-    fun `when get list recipe is success`() = runBlocking {
-        val dummyResource = Resource.Success(
-            listOf(
-                RecipeItem(
-                    title = "Resep Rendang Daging Sapi Paling Istimewa",
-                    thumb = "https://www.masakapahariini.com/wp-content/uploads/2018/04/resep-rendang-daging-sapi-400x240.jpg",
-                    key = "resep-rendang-daging-sapi",
-                    times = "1jam 30mnt",
-                    portion = "6 Porsi",
-                    difficulty = "Level Chef Panji"
-                ),
-                RecipeItem(
-                    title = "Resep Lemper Ayam Bumbu Rendang, Camilan Tradisional yang Enak",
-                    thumb = "https://www.masakapahariini.com/wp-content/uploads/2018/11/lemper-ayam-bumbu-rendang-MAHI-1-400x240.jpg",
-                    key = "resep-lemper-ayam-bumbu-rendang",
-                    times = "1jam 30mnt",
-                    portion = "4 Porsi",
-                    difficulty = "Cukup Rumit"
-                )
-            )
-        )
-
-        `when`(recipeRepository.getListRecipe()).thenReturn(flow {
-            emit(dummyResource)
-        })
-
-        val listRecipe = recipeUseCase.getListRecipe().first().data
-        assertEquals(dummyResource.data, listRecipe)
-    }
+//    @Test
+//    fun `when get list recipe is success`() = runBlocking {
+//        val dummyResource = Resource.Success(
+//            listOf(
+//                RecipeItem(
+//                    title = "Resep Rendang Daging Sapi Paling Istimewa",
+//                    thumb = "https://www.masakapahariini.com/wp-content/uploads/2018/04/resep-rendang-daging-sapi-400x240.jpg",
+//                    key = "resep-rendang-daging-sapi",
+//                    times = "1jam 30mnt",
+//                    portion = "6 Porsi",
+//                    difficulty = "Level Chef Panji"
+//                ),
+//                RecipeItem(
+//                    title = "Resep Lemper Ayam Bumbu Rendang, Camilan Tradisional yang Enak",
+//                    thumb = "https://www.masakapahariini.com/wp-content/uploads/2018/11/lemper-ayam-bumbu-rendang-MAHI-1-400x240.jpg",
+//                    key = "resep-lemper-ayam-bumbu-rendang",
+//                    times = "1jam 30mnt",
+//                    portion = "4 Porsi",
+//                    difficulty = "Cukup Rumit"
+//                )
+//            )
+//        )
+//
+//        `when`(recipeRepository.getListRecipe()).thenReturn(flow {
+//            emit(dummyResource)
+//        })
+//
+//        val listRecipe = recipeUseCase.getListRecipe().first().data
+//        assertEquals(dummyResource.data, listRecipe)
+//    }
 
     @Test
     fun `when get detail recipe is success`() = runBlocking {

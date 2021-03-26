@@ -1,6 +1,9 @@
+@file:Suppress("unused")
+
 package id.agis.sakmasak
 
 import android.app.Application
+import id.agis.core.di.databaseModule
 import id.agis.core.di.networkModule
 import id.agis.core.di.repositoryModule
 import id.agis.sakmasak.di.useCaseModule
@@ -19,6 +22,7 @@ class MyApplication : Application() {
             modules(
                 listOf(
                     networkModule,
+                    databaseModule,
                     repositoryModule,
                     useCaseModule,
                     viewModelModule

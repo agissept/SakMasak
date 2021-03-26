@@ -10,4 +10,12 @@ interface IRecipeRepository {
     fun getListRecipe(): Flow<PagingData<RecipeItem>>
 
     fun getDetailRecipe(recipeKey: String): Flow<Resource<DetailRecipe>>
+
+    fun getAllFavoriteRecipe(): Flow<List<RecipeItem>>
+
+    suspend fun getFavoriteRecipeById(recipeKey: String): RecipeItem?
+
+    suspend fun addRecipeToFavorite(recipe: RecipeItem)
+
+    suspend fun removeRecipeFromFavorite(recipe: RecipeItem)
 }
