@@ -59,7 +59,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun changeButtonFavorite() {
-        println("ssssssssssssssss")
         if (isFavorite) {
             binding.btnFavorite.load(R.drawable.ic_baseline_favorite_24)
         } else {
