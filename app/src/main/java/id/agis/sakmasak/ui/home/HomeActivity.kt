@@ -4,20 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import id.agis.core.data.source.Resource
 import id.agis.sakmasak.R
 import id.agis.sakmasak.databinding.ActivityMainBinding
+import id.agis.sakmasak.ui.favorite.FavoriteActivity
 import id.agis.sakmasak.ui.home.loader.HomeLoadStateAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import id.agis.sakmasak.ui.favorite.FavoriteActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
