@@ -15,15 +15,15 @@ class RecipeInteractor(private val recipeRepository: IRecipeRepository) : Recipe
         return recipeRepository.getAllFavoriteRecipe()
     }
 
-    override fun getFavoriteRecipeById(recipeKey: String): RecipeItem? {
+    override suspend fun getFavoriteRecipeById(recipeKey: String): RecipeItem? {
         return recipeRepository.getFavoriteRecipeById(recipeKey)
     }
 
-    override fun addRecipeToFavorite(recipe: RecipeItem) {
+    override suspend fun addRecipeToFavorite(recipe: RecipeItem) {
         recipeRepository.addRecipeToFavorite(recipe)
     }
 
-    override fun removeRecipeFromFavorite(recipe: RecipeItem) {
+    override suspend fun removeRecipeFromFavorite(recipe: RecipeItem) {
         recipeRepository.removeRecipeFromFavorite(recipe)
     }
 }

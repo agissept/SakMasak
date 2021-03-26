@@ -13,9 +13,9 @@ interface RecipeUseCase {
 
     fun getAllFavoriteRecipe(): Flow<List<RecipeItem>>
 
-    fun addRecipeToFavorite(recipe: RecipeItem)
+    suspend fun addRecipeToFavorite(recipe: RecipeItem)
 
-    fun removeRecipeFromFavorite(recipe: RecipeItem)
+    suspend fun removeRecipeFromFavorite(recipe: RecipeItem)
 
-    fun getFavoriteRecipeById(recipeKey: String): RecipeItem?
+    suspend fun getFavoriteRecipeById(recipeKey: String): RecipeItem?
 }

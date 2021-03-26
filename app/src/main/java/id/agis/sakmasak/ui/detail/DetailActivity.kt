@@ -38,8 +38,13 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initFavoriteButton() {
-        isFavorite = viewModel.getFavoriteRecipeById(recipeKey) != null
-        changeButtonFavorite()
+        viewModel.getFavoriteRecipeById(recipeKey)
+        viewModel.recipe.observe(this, {
+            if (it != null) {
+                isFavorite = true
+                changeButtonFavorite ()
+            }
+        })
         binding.btnFavorite.setOnClickListener {
             if (recipeItem != null) {
                 isFavorite = if (!isFavorite) {
@@ -55,6 +60,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun changeButtonFavorite() {
+        println("ssssssssssssssss")
         if (isFavorite) {
             binding.btnFavorite.load(R.drawable.ic_baseline_favorite_24)
         } else {

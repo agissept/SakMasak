@@ -54,25 +54,19 @@ class RecipeRepository(
         }
     }
 
-    override fun addRecipeToFavorite(recipe: RecipeItem) {
+    override suspend fun addRecipeToFavorite(recipe: RecipeItem) {
         val recipeEntity: RecipeEntity = recipe.toEntityModel()
-        //TODO change runBlocking to suspend function
-        runBlocking {
-            localDataSource.addRecipeToFavorite(recipeEntity)
-        }
+        return localDataSource.addRecipeToFavorite(recipeEntity)
+
     }
 
-    override fun getFavoriteRecipeById(recipeKey: String): RecipeItem? {
-        return runBlocking {
-            localDataSource.getFavoriteRecipeById(recipeKey)
-        }
+    override suspend fun getFavoriteRecipeById(recipeKey: String): RecipeItem? {
+        return localDataSource.getFavoriteRecipeById(recipeKey)
     }
 
-    override fun removeRecipeFromFavorite(recipe: RecipeItem) {
+    override suspend fun removeRecipeFromFavorite(recipe: RecipeItem) {
         val recipeEntity: RecipeEntity = recipe.toEntityModel()
-        runBlocking {
-            localDataSource.removeRecipeFromFavorite(recipeEntity)
-        }
+        return localDataSource.removeRecipeFromFavorite(recipeEntity)
     }
 
     companion object {
