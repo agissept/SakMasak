@@ -8,7 +8,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class FavoriteActivity : AppCompatActivity() {
     private val adapter = FavoriteAdapter()
-    lateinit var binding: ActivityFavoriteBinding
+    private lateinit var binding: ActivityFavoriteBinding
     private val viewModel: FavoriteViewModel by viewModel()
 
 
