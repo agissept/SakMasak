@@ -32,7 +32,7 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setStatusBarTransparent()
+        initStatusBarColor()
         initIngredientRecyclerView()
         initStepRecyclerView()
         observeDetailRecipe()
@@ -46,12 +46,23 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setStatusBarTransparent() {
+    private fun initStatusBarColor() {
         window.apply {
             addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             statusBarColor = Color.TRANSPARENT
         }
         WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        binding.mainView.viewTreeObserver.addOnScrollChangedListener {
+            val scrollY: Int = binding.mainView.scrollY
+            if (scrollY > 900 && window.statusBarColor != Color.BLACK) {
+                window.statusBarColor = Color.BLACK
+                Toast.makeText(this, "black", Toast.LENGTH_SHORT).show()
+            }else if(scrollY < 900 && window.statusBarColor != Color.TRANSPARENT){
+                window.statusBarColor = Color.TRANSPARENT
+                Toast.makeText(this, "white", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun initFavoriteButton() {
