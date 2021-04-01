@@ -37,6 +37,13 @@ class DetailActivity : AppCompatActivity() {
         initStepRecyclerView()
         observeDetailRecipe()
         initFavoriteButton()
+        initBackButton()
+    }
+
+    private fun initBackButton() {
+        binding.btnBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setStatusBarTransparent() {
