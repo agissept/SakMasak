@@ -1,9 +1,12 @@
 package id.agis.sakmasak.ui.detail
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import id.agis.core.data.source.Resource
@@ -29,11 +32,19 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setStatusBarTransparent()
         initIngredientRecyclerView()
         initStepRecyclerView()
-
         observeDetailRecipe()
         initFavoriteButton()
+    }
+
+    private fun setStatusBarTransparent() {
+        window.apply {
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            statusBarColor = Color.TRANSPARENT
+        }
+        WindowCompat.setDecorFitsSystemWindows(window, false)
     }
 
     private fun initFavoriteButton() {
