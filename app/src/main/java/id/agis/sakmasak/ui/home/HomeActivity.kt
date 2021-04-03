@@ -6,10 +6,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
+import coil.transform.CircleCropTransformation
 import id.agis.sakmasak.R
 import id.agis.sakmasak.databinding.ActivityMainBinding
 import id.agis.sakmasak.ui.favorite.FavoriteActivity
@@ -31,8 +34,20 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setAvatar()
         initRecyclerViewAdapter()
         observeListRecipe()
+        initStatusBar()
+    }
+
+    private fun initStatusBar() {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
+    }
+
+    private fun setAvatar() {
+        binding.ivAvatar.load(R.drawable.john){
+            transformations(CircleCropTransformation())
+        }
     }
 
     private fun observeListRecipe() {

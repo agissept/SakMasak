@@ -5,4 +5,7 @@
     <string name="how_to">Cara Membuat</string>
     <string name="favorite">Favorite</string>
     <string name="retry">Retry</string>
+    <string name="greeting">Hi, John</string>
+    <string name="sub_greeting">Glad you back to cook!</string>
+    <string name="avatar">avatar</string>
 </resources>
