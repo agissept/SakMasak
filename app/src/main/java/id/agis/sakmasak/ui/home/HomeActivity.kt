@@ -13,6 +13,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.transform.CircleCropTransformation
+import id.agis.core.data.source.Resource
 import id.agis.sakmasak.R
 import id.agis.sakmasak.databinding.ActivityMainBinding
 import id.agis.sakmasak.ui.favorite.FavoriteActivity
@@ -38,6 +39,25 @@ class HomeActivity : AppCompatActivity() {
         initRecyclerViewAdapter()
         observeListRecipe()
         initStatusBar()
+        initTodayPicks()
+    }
+
+    private fun initTodayPicks() {
+        viewModel.todayPicks.observe(this, {
+            when (it) {
+                is Resource.Loading -> {
+
+                }
+                is Resource.Success -> {
+                    val adapter = TodayPicksAdapter()
+                    binding.rvTodayPicks.adapter = adapter
+                    adapter.setItem(it.data!!)
+                }
+                is Resource.Error -> {
+
+                }
+            }
+        })
     }
 
     private fun initStatusBar() {

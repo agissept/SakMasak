@@ -8,4 +8,5 @@
     <string name="greeting">Hi, John</string>
     <string name="sub_greeting">Glad you back to cook!</string>
     <string name="avatar">avatar</string>
+    <string name="image_today_pick">image today pick</string>
 </resources>
