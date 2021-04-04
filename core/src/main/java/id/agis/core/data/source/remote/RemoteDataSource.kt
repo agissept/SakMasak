@@ -14,6 +14,18 @@ import java.io.IOException
 
 class RemoteDataSource(val apiService: ApiService) {
 
+    suspend fun getTodayPicks(): Flow<ApiResponse<List<RecipeItemResponse>>> {
+        return flow {
+            try {
+                val response = apiService.getTodayPicks().results
+                emit(ApiResponse.Success(response))
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
     suspend fun getDetailRecipe(recipeKey: String): Flow<ApiResponse<DetailRecipeResponse>> {
         return flow {
             try {

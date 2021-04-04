@@ -7,6 +7,9 @@ import retrofit2.http.Path
 
 interface ApiService {
     @GET("recipes/{page}")
+    suspend fun getTodayPicks(): ListRecipeResponse
+
+    @GET("recipes/{page}")
     suspend fun getListRecipe(@Path("page") page: Int): ListRecipeResponse
 
     @GET("recipe/{key}")

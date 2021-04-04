@@ -8,6 +8,7 @@ import id.agis.core.data.source.local.LocalDataSource
 import id.agis.core.data.source.local.entity.RecipeEntity
 import id.agis.core.data.source.remote.RemoteDataSource
 import id.agis.core.data.source.remote.network.ApiResponse
+import id.agis.core.data.source.remote.response.RecipeItemResponse
 import id.agis.core.data.source.remote.response.detailrecipe.DetailRecipeResponse
 import id.agis.core.domain.model.DetailRecipe
 import id.agis.core.domain.model.RecipeItem
@@ -21,6 +22,19 @@ class RecipeRepository(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
 ) : IRecipeRepository {
+    override fun getTodayPicks(): Flow<Resource<List<RecipeItem>>> =
+        object : NetworkBoundResource<List<RecipeItem>, List<RecipeItemResponse>>() {
+            override fun convertDataToDomainModel(data: List<RecipeItemResponse>): List<RecipeItem> {
+                return data.map {
+                    it.toDomainModel()
+                }
+            }
+
+            override suspend fun getDataFromNetwork(): Flow<ApiResponse<List<RecipeItemResponse>>> {
+               return remoteDataSource.getTodayPicks()
+            }
+
+        }.asFlow()
 
     override fun getListRecipe(): Flow<PagingData<RecipeItem>> =
         Pager(
