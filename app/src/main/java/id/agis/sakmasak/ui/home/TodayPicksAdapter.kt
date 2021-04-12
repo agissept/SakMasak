@@ -1,11 +1,13 @@
 package id.agis.sakmasak.ui.home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import id.agis.core.domain.model.RecipeItem
 import id.agis.sakmasak.databinding.ItemTodayPickBinding
+import id.agis.sakmasak.ui.detail.DetailActivity
 
 class TodayPicksAdapter : RecyclerView.Adapter<TodayPicksAdapter.ViewHolder>() {
     private val listTodayPicks = mutableListOf<RecipeItem>()
@@ -28,6 +30,12 @@ class TodayPicksAdapter : RecyclerView.Adapter<TodayPicksAdapter.ViewHolder>() {
             ivTodayPick.load(recipe.thumb)
             tvTitle.text = recipe.title
             tvTimes.text = recipe.times
+            root.setOnClickListener {
+                val intent = Intent(it.context, DetailActivity::class.java ).apply {
+                    putExtra(DetailActivity.EXTRA_RECIPE_KEY, recipe.key)
+                }
+                it.context.startActivity(intent)
+            }
         }
     }
 
