@@ -9,4 +9,5 @@
     <string name="sub_greeting">Glad you back to cook!</string>
     <string name="avatar">avatar</string>
     <string name="image_today_pick">image today pick</string>
+    <string name="today_picks">Today picks</string>
 </resources>
