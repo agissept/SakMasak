@@ -26,6 +26,8 @@ class TodayPicksAdapter : RecyclerView.Adapter<TodayPicksAdapter.ViewHolder>() {
         val recipe = listTodayPicks[position]
         with(holder.binding) {
             ivTodayPick.load(recipe.thumb)
+            tvTitle.text = recipe.title
+            tvTimes.text = recipe.times
         }
     }
 
