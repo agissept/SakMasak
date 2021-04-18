@@ -8,6 +8,7 @@ import coil.load
 import id.agis.core.domain.model.RecipeItem
 import id.agis.sakmasak.databinding.ItemTodayPickBinding
 import id.agis.sakmasak.ui.detail.DetailActivity
+import id.agis.sakmasak.utils.takeMainContent
 
 class TodayPicksAdapter : RecyclerView.Adapter<TodayPicksAdapter.ViewHolder>() {
     private val listTodayPicks = mutableListOf<RecipeItem>()
@@ -28,7 +29,7 @@ class TodayPicksAdapter : RecyclerView.Adapter<TodayPicksAdapter.ViewHolder>() {
         val recipe = listTodayPicks[position]
         with(holder.binding) {
             ivTodayPick.load(recipe.thumb)
-            tvTitle.text = recipe.title
+            tvTitle.text = recipe.title.takeMainContent()
             tvTimes.text = recipe.times
             root.setOnClickListener {
                 val intent = Intent(it.context, DetailActivity::class.java ).apply {

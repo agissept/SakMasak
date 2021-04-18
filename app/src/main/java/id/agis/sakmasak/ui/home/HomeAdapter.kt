@@ -11,6 +11,7 @@ import id.agis.core.domain.model.RecipeItem
 import id.agis.sakmasak.databinding.ItemRecipeBinding
 import id.agis.sakmasak.ui.detail.DetailActivity
 import id.agis.sakmasak.ui.detail.DetailActivity.Companion.EXTRA_RECIPE_KEY
+import id.agis.sakmasak.utils.takeMainContent
 
 class HomeAdapter : PagingDataAdapter<RecipeItem, HomeAdapter.ViewHolder>(RECIPE_COMPARATOR) {
 
@@ -24,7 +25,7 @@ class HomeAdapter : PagingDataAdapter<RecipeItem, HomeAdapter.ViewHolder>(RECIPE
         if (recipe != null) {
             with(holder.binding) {
                 with(recipe) {
-                    tvTitle.text = title
+                    tvTitle.text = title.takeMainContent()
                     tvDifficulty.text = difficulty
                     tvPortion.text = portion
                     tvTimes.text = times
