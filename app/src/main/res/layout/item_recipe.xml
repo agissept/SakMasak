@@ -49,13 +49,14 @@
             android:drawablePadding="4dp"
             android:fontFamily="@font/poppins_regular"
             android:foregroundGravity="center"
-            android:gravity="center"
+            android:gravity="center_vertical"
             app:drawableStartCompat="@drawable/ic_baseline_access_time_24_light"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/tv_portion"
             tools:text="2 jam" />
 
         <TextView
+            android:gravity="center_vertical"
             android:id="@+id/tv_portion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -75,7 +76,7 @@
             android:layout_marginBottom="8dp"
             android:drawablePadding="4dp"
             android:fontFamily="@font/poppins_regular"
-            android:gravity="center"
+            android:gravity="center_vertical"
             app:drawableStartCompat="@drawable/ic_baseline_looks_24_light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_portion"
