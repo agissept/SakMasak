@@ -7,6 +7,8 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.CircleCropTransformation
+import coil.transform.RoundedCornersTransformation
 import id.agis.core.domain.model.RecipeItem
 import id.agis.sakmasak.databinding.ItemRecipeBinding
 import id.agis.sakmasak.ui.detail.DetailActivity
@@ -29,7 +31,9 @@ class HomeAdapter : PagingDataAdapter<RecipeItem, HomeAdapter.ViewHolder>(RECIPE
                     tvDifficulty.text = difficulty
                     tvPortion.text = portion
                     tvTimes.text = times
-                    ivThumb.load(thumb)
+                    ivThumb.load(thumb){
+                        transformations(RoundedCornersTransformation(32f))
+                    }
                 }
             }
 

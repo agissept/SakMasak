@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import id.agis.core.domain.model.RecipeItem
 import id.agis.sakmasak.databinding.ItemRecipeBinding
 import id.agis.sakmasak.ui.detail.DetailActivity
@@ -34,7 +35,9 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
                 tvDifficulty.text = difficulty
                 tvPortion.text = portion
                 tvTimes.text = times
-                ivThumb.load(thumb)
+                ivThumb.load(thumb){
+                    transformations(RoundedCornersTransformation(32f))
+                }
             }
         }
 
