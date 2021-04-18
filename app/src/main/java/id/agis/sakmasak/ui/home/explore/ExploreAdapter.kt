@@ -1,4 +1,4 @@
-package id.agis.sakmasak.ui.home
+package id.agis.sakmasak.ui.home.explore
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
 import id.agis.core.domain.model.RecipeItem
 import id.agis.sakmasak.databinding.ItemRecipeBinding
@@ -15,14 +14,14 @@ import id.agis.sakmasak.ui.detail.DetailActivity
 import id.agis.sakmasak.ui.detail.DetailActivity.Companion.EXTRA_RECIPE_KEY
 import id.agis.sakmasak.utils.takeMainContent
 
-class HomeAdapter : PagingDataAdapter<RecipeItem, HomeAdapter.ViewHolder>(RECIPE_COMPARATOR) {
+class ExploreAdapter : PagingDataAdapter<RecipeItem, ExploreAdapter.ViewHolder>(RECIPE_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = ItemRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: HomeAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recipe = getItem(position)
         if (recipe != null) {
             with(holder.binding) {
