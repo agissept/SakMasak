@@ -1,4 +1,4 @@
-package id.agis.sakmasak.ui.home
+package id.agis.sakmasak.ui.home.favorite
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

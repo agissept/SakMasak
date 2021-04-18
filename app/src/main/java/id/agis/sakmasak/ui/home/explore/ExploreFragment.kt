@@ -1,4 +1,4 @@
-package id.agis.sakmasak.ui.home
+package id.agis.sakmasak.ui.home.explore
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.agis.sakmasak.databinding.FragmentExploreBinding
+import id.agis.sakmasak.ui.home.HomeAdapter
+import id.agis.sakmasak.ui.home.HomeViewModel
 import id.agis.sakmasak.ui.home.loader.HomeLoadStateAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
