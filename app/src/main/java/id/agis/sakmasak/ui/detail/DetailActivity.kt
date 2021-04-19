@@ -44,11 +44,10 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initTabLayout() {
-            binding.viewPager.adapter = DetailViewPagerAdapter(this)
-            TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab, position->
-                tab.text = HomeViewPagerAdapter.fragments[position].title
-            }.attach()
-
+        binding.viewPager.adapter = DetailViewPagerAdapter(this)
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.text = DetailViewPagerAdapter.fragments[position].title
+        }.attach()
     }
 
     private fun initBackButton() {
@@ -68,7 +67,7 @@ class DetailActivity : AppCompatActivity() {
             val scrollY: Int = binding.mainView.scrollY
             if (scrollY > 900 && window.statusBarColor != Color.BLACK) {
                 window.statusBarColor = Color.BLACK
-            }else if(scrollY < 900 && window.statusBarColor != Color.TRANSPARENT){
+            } else if (scrollY < 900 && window.statusBarColor != Color.TRANSPARENT) {
                 window.statusBarColor = Color.TRANSPARENT
             }
         }
