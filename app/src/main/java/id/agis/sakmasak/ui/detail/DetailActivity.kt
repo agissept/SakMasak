@@ -9,11 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
+import com.google.android.material.tabs.TabLayoutMediator
 import id.agis.core.data.source.Resource
 import id.agis.core.domain.model.DetailRecipe
 import id.agis.core.domain.model.RecipeItem
 import id.agis.sakmasak.R
 import id.agis.sakmasak.databinding.ActivityDetailBinding
+import id.agis.sakmasak.ui.home.HomeViewPagerAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
@@ -38,6 +40,15 @@ class DetailActivity : AppCompatActivity() {
         observeDetailRecipe()
         initFavoriteButton()
         initBackButton()
+        initTabLayout()
+    }
+
+    private fun initTabLayout() {
+            binding.viewPager.adapter = DetailViewPagerAdapter(this)
+            TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab, position->
+                tab.text = HomeViewPagerAdapter.fragments[position].title
+            }.attach()
+
     }
 
     private fun initBackButton() {
