@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="16dp">
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="1.5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/iv_thumb"
-            android:layout_width="100dp"
+            android:layout_width="110dp"
             android:layout_height="0dp"
             android:contentDescription="@string/recipe_image"
             android:scaleType="centerCrop"
@@ -27,37 +30,65 @@
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:ellipsize="end"
+            android:fontFamily="@font/poppins_medium"
             android:maxLines="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_thumb"
             app:layout_constraintTop_toTopOf="@+id/iv_thumb"
             tools:text="Rendang padang emang paling mantap sedunia" />
 
+
         <TextView
             android:id="@+id/tv_times"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/poppins_regular"
+            android:foregroundGravity="center"
+            android:gravity="center_vertical"
+            app:drawableStartCompat="@drawable/ic_baseline_access_time_24_light"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/tv_portion"
             tools:text="2 jam" />
 
         <TextView
+            android:gravity="center_vertical"
             android:id="@+id/tv_portion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/tv_times"
-            app:layout_constraintTop_toBottomOf="@+id/tv_times"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/poppins_regular"
+            app:drawableStartCompat="@drawable/ic_baseline_rice_bowl_24_light"
+            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
             tools:text="4 Porsi" />
 
         <TextView
             android:id="@+id/tv_difficulty"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center_vertical"
+            app:drawableStartCompat="@drawable/ic_baseline_looks_24_light"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_portion"
             app:layout_constraintTop_toBottomOf="@+id/tv_portion"
             tools:text="Sangat Susah" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.66" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

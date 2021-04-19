@@ -1,10 +1,14 @@
 package id.agis.core.domain.usecase
 
+import id.agis.core.data.source.Resource
 import id.agis.core.domain.model.RecipeItem
 import id.agis.core.domain.repository.IRecipeRepository
 import kotlinx.coroutines.flow.Flow
 
 class RecipeInteractor(private val recipeRepository: IRecipeRepository) : RecipeUseCase {
+    override fun geTodayPicks(): Flow<Resource<List<RecipeItem>>> {
+        return recipeRepository.getTodayPicks()
+    }
 
     override fun getListRecipe() = recipeRepository.getListRecipe()
 
