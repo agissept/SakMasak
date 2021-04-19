@@ -21,12 +21,15 @@
                 android:layout_height="350dp"
                 android:contentDescription="@string/recipe_image"
                 android:scaleType="centerCrop"
+                android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars" />
+                tools:src="@tools:sample/avatars"
+                android:elevation="12dp"/>
 
             <View
+                android:translationZ="12dp"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="#46000000"
@@ -36,6 +39,7 @@
                 app:layout_constraintTop_toTopOf="@id/iv_thumb" />
 
             <ImageButton
+                android:translationZ="12dp"
                 android:id="@+id/btn_favorite"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
