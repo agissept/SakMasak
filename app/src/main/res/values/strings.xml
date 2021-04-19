@@ -12,4 +12,7 @@
     <string name="today_picks">Today picks</string>
     <string name="explore">Explore</string>
     <string name="back_button">back_button</string>
+    <string name="portion">Portion</string>
+    <string name="times">Times</string>
+    <string name="level">Level</string>
 </resources>
