@@ -7,7 +7,6 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.google.android.material.tabs.TabLayoutMediator
 import id.agis.core.data.source.Resource
@@ -15,15 +14,15 @@ import id.agis.core.domain.model.DetailRecipe
 import id.agis.core.domain.model.RecipeItem
 import id.agis.sakmasak.R
 import id.agis.sakmasak.databinding.ActivityDetailBinding
-import id.agis.sakmasak.ui.home.HomeViewPagerAdapter
+import id.agis.sakmasak.ui.detail.fragment.IngredientsFragment
+import id.agis.sakmasak.ui.detail.fragment.StepsFragment
+import id.agis.sakmasak.ui.detail.fragment.ViewPagerModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
 
     private val viewModel: DetailViewModel by viewModel()
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var ingredientAdapter: DetailAdapter
-    private lateinit var stepAdapter: DetailAdapter
     private var recipeItem: RecipeItem? = null
 
     private val recipeKey by lazy { intent.getStringExtra(EXTRA_RECIPE_KEY) ?: "" }
@@ -35,18 +34,19 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initStatusBarColor()
-        initIngredientRecyclerView()
-        initStepRecyclerView()
         observeDetailRecipe()
         initFavoriteButton()
         initBackButton()
-        initTabLayout()
     }
 
-    private fun initTabLayout() {
-        binding.viewPager.adapter = DetailViewPagerAdapter(this)
+    private fun initTabLayout(listIngredients: List<String>, listSteps: List<String>) {
+        val fragments = arrayOf(
+            ViewPagerModel("Bahan-bahan", IngredientsFragment.newInstance(listIngredients)),
+            ViewPagerModel("Cara Membuat", StepsFragment.newInstance(listSteps))
+        )
+        binding.viewPager.adapter = DetailViewPagerAdapter(this, fragments)
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = DetailViewPagerAdapter.fragments[position].title
+            tab.text = fragments[position].title
         }.attach()
     }
 
@@ -103,18 +103,6 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun initStepRecyclerView() {
-        stepAdapter = DetailAdapter()
-        binding.rvStep.adapter = ingredientAdapter
-        binding.rvStep.layoutManager = LinearLayoutManager(this)
-    }
-
-    private fun initIngredientRecyclerView() {
-        ingredientAdapter = DetailAdapter()
-        binding.rvIngredient.adapter = ingredientAdapter
-        binding.rvIngredient.layoutManager = LinearLayoutManager(this)
-    }
-
     private fun observeDetailRecipe() {
         viewModel.getGetDetailRecipe(recipeKey).observe(this, {
             if (it.data != null) {
@@ -147,8 +135,7 @@ class DetailActivity : AppCompatActivity() {
             binding.tvServings.text = servings
             binding.tvDifficulty.text = difficulty
             binding.tvTimes.text = times
-            ingredientAdapter.setItem(ingredient)
-            stepAdapter.setItem(step)
+            initTabLayout(ingredient, step)
         }
 
         recipeItem = with(recipe) {
