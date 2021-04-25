@@ -4,6 +4,7 @@
     android:id="@+id/recycler_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:overScrollMode="never"
     tools:context=".ui.detail.fragment.IngredientsFragment"
     tools:itemCount="10"
     tools:listitem="@layout/item_ingredient" />
