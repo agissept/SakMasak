@@ -13,7 +13,11 @@ class IngredientAdapter(private val listIngredient: List<String>) : RecyclerView
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.tvItem.text = listIngredient[position]
+        with(holder.binding){
+            tvNumber.text = (position + 1).toString()
+            tvItem.text = listIngredient[position].trim()
+        }
+
     }
 
     override fun getItemCount(): Int {
