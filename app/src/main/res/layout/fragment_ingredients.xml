@@ -7,4 +7,6 @@
     android:overScrollMode="never"
     tools:context=".ui.detail.fragment.IngredientsFragment"
     tools:itemCount="10"
+    android:paddingTop="16dp"
+    android:clipToPadding="false"
     tools:listitem="@layout/item_ingredient" />
