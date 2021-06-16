@@ -46,7 +46,7 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun observeListFavoriteRecipe() {
-        viewModel.lisFavoriteRecipe.observe(this, {
+        viewModel.lisFavoriteRecipe.observe(viewLifecycleOwner, {
             adapter.setItem(it)
         })
 
