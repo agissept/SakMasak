@@ -10,6 +10,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import id.agis.core.data.source.Resource
 import id.agis.sakmasak.R
 import id.agis.sakmasak.databinding.ActivityMainBinding
+import id.agis.sakmasak.utils.toast
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -50,7 +51,7 @@ class HomeActivity : AppCompatActivity() {
                     binding.progressCircular.visibility = View.INVISIBLE
                 }
                 is Resource.Error -> {
-
+                    toast(it.message)
                 }
             }
         })
