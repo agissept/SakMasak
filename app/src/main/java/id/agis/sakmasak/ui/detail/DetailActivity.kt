@@ -87,9 +87,11 @@ class DetailActivity : AppCompatActivity() {
             recipeItem?.let {
                 isFavorite = if (!isFavorite) {
                     viewModel.addRecipeToFavorite(it)
+                    toast("Berhasil Dimasukkan Ke Favorite")
                     true
                 } else {
                     viewModel.removeRecipeFromFavorite(it)
+                    toast("Berhasil Dihapus Dari Favorite")
                     false
                 }
                 changeButtonFavorite()
@@ -100,10 +102,8 @@ class DetailActivity : AppCompatActivity() {
     private fun changeButtonFavorite() {
         if (isFavorite) {
             binding.btnFavorite.load(R.drawable.ic_baseline_favorite_24)
-            toast("Berhasil Dimasukkan Ke Favorite")
         } else {
             binding.btnFavorite.load(R.drawable.ic_baseline_favorite_border_24)
-            toast("Berhasil Dihapus Dari Favorite")
         }
     }
 
