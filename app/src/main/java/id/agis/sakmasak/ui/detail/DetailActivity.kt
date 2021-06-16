@@ -17,6 +17,7 @@ import id.agis.sakmasak.databinding.ActivityDetailBinding
 import id.agis.sakmasak.ui.detail.fragment.IngredientsFragment
 import id.agis.sakmasak.ui.detail.fragment.StepsFragment
 import id.agis.sakmasak.ui.detail.fragment.ViewPagerModel
+import id.agis.sakmasak.utils.toast
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
@@ -98,8 +99,10 @@ class DetailActivity : AppCompatActivity() {
     private fun changeButtonFavorite() {
         if (isFavorite) {
             binding.btnFavorite.load(R.drawable.ic_baseline_favorite_24)
+            toast("Berhasil Dimasukkan Ke Favorite")
         } else {
             binding.btnFavorite.load(R.drawable.ic_baseline_favorite_border_24)
+            toast("Berhasil Dihapus Dari Favorite")
         }
     }
 
