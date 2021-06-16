@@ -34,6 +34,7 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
             root.setOnClickListener {
                 val intent = Intent(it.context, DetailActivity::class.java).apply {
                     putExtra(DetailActivity.EXTRA_RECIPE_KEY, recipe.key)
+                    putExtra(DetailActivity.EXTRA_RECIPE_IMAGE_KEY, recipe.thumb)
                 }
                 it.context.startActivity(intent)
             }

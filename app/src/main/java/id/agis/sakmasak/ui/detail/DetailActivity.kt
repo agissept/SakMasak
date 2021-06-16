@@ -27,6 +27,7 @@ class DetailActivity : AppCompatActivity() {
     private var recipeItem: RecipeItem? = null
 
     private val recipeKey by lazy { intent.getStringExtra(EXTRA_RECIPE_KEY) ?: "" }
+    private val recipeImage by lazy { intent.getStringExtra(EXTRA_RECIPE_IMAGE_KEY) ?: "" }
     private var isFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -133,7 +134,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun showDataToUI(recipe: DetailRecipe) {
         with(recipe) {
-            binding.ivThumb.load(thumb)
+            binding.ivThumb.load(recipeImage)
             binding.tvTitle.text = title
             binding.tvServings.text = servings
             binding.tvDifficulty.text = difficulty
@@ -144,7 +145,7 @@ class DetailActivity : AppCompatActivity() {
         recipeItem = with(recipe) {
             return@with RecipeItem(
                 title = title,
-                thumb = thumb ?: "",
+                thumb = recipeImage,
                 key = recipeKey,
                 times = times,
                 portion = servings,
@@ -155,5 +156,6 @@ class DetailActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_RECIPE_KEY = "extra_recipe_key"
+        const val EXTRA_RECIPE_IMAGE_KEY = "extra_recipe_image_key"
     }
 }
