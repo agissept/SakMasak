@@ -5,6 +5,8 @@ plugins {
     id 'kotlin-kapt'
 }
 
+apply from: '../shared_dependencies.gradle'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -49,16 +51,10 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
     implementation "io.coil-kt:coil:$coil_version"
 
-    //koin
-    implementation "org.koin:koin-core:$koin_version"
-    implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-android-viewmodel:$koin_version"
-
     //paging
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 
     //lifecycle
     api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-
 }
