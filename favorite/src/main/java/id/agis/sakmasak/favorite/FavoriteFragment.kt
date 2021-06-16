@@ -1,4 +1,4 @@
-package id.agis.sakmasak.ui.home.favorite
+package id.agis.sakmasak.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,16 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import id.agis.sakmasak.databinding.FragmentFavoriteBinding
-import id.agis.sakmasak.ui.home.HomeViewModel
+import id.agis.sakmasak.favorite.databinding.FragmentFavoriteBinding
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
+@Suppress("unused")
 class FavoriteFragment : Fragment() {
 
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
     private val adapter = FavoriteAdapter()
-    private val viewModel: HomeViewModel by viewModel()
+    private val viewModel: FavoriteViewModel by viewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        loadKoinModules(favoriteModule)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
