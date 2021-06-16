@@ -66,8 +66,6 @@ class ExploreFragment : Fragment() {
     }
 
     private fun observeListRecipe() {
-        // TODO fix loading
-//        binding.progressCircular.visibility = View.GONE
         lifecycleScope.launch {
             viewModel.listRecipe.collectLatest {
                 adapter.submitData(it)
