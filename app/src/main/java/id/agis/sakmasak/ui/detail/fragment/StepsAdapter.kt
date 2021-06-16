@@ -14,13 +14,22 @@ class StepsAdapter(private val listSteps: List<String>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val step = listSteps[position].removeNumber()
         holder.binding.tvItem.text = listSteps[position]
+
+        with(holder.binding){
+            tvNumber.text = (position + 1).toString()
+            tvItem.text = step
+        }
     }
 
     override fun getItemCount(): Int {
         return listSteps.size
     }
 
-    inner class ViewHolder(val binding: ItemStepBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    override fun getItemViewType(position: Int) = if (position == listSteps.lastIndex) 1 else 0
+
+    private fun String.removeNumber() = substring(this.indexOfFirst { it == ' ' }).trim()
+
+    inner class ViewHolder(val binding: ItemStepBinding) : RecyclerView.ViewHolder(binding.root)
 }
