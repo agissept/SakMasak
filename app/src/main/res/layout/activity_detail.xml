@@ -19,34 +19,50 @@
                 android:id="@+id/iv_thumb"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
+                android:background="@color/white"
                 android:contentDescription="@string/recipe_image"
+                android:elevation="12dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#46000000"
+                android:translationZ="12dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_thumb"
+                app:layout_constraintEnd_toEndOf="@id/iv_thumb"
+                app:layout_constraintStart_toStartOf="@id/iv_thumb"
+                app:layout_constraintTop_toTopOf="@id/iv_thumb" />
+
             <ImageButton
                 android:id="@+id/btn_favorite"
-                android:scaleType="centerCrop"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginEnd="16dp"
-                android:background="@null"
+                android:background="@drawable/circle_button"
                 android:contentDescription="@string/favorite"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_baseline_favorite_border_24"
+                android:translationZ="12dp"
                 app:layout_constraintEnd_toEndOf="@+id/iv_thumb"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_title"
-                style="@style/TextAppearance.MaterialComponents.Headline5"
+                style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_thumb"
@@ -57,6 +73,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_title"
                 app:layout_constraintStart_toStartOf="@+id/tv_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title">
@@ -64,105 +82,156 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:background="#FFF4EB"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp">
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="4dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:gravity="top"
+                        android:text="@string/portion"
+                        app:drawableBottomCompat="@drawable/ic_baseline_rice_bowl_24_orange"
+                        app:layout_constraintEnd_toStartOf="@+id/view"
+                        app:layout_constraintHorizontal_bias="0.505"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
 
                     <TextView
                         android:id="@+id/tv_servings"
-                        style="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        app:layout_constraintEnd_toStartOf="@+id/tv_difficulty"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/poppins_medium"
+                        app:layout_constraintLeft_toLeftOf="@+id/textView8"
+                        app:layout_constraintRight_toRightOf="@id/textView8"
+                        app:layout_constraintTop_toBottomOf="@+id/textView8"
                         tools:text="4 Porsi" />
 
-                    <TextView
-                        android:id="@+id/tv_difficulty"
-                        style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="0.8dp"
+                        android:layout_height="0dp"
+                        android:background="#F98637"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/tv_times"
+                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/tv_servings"
-                        app:layout_constraintTop_toTopOf="@+id/tv_servings"
-                        tools:text="Mudah" />
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:gravity="top"
+                        android:text="@string/times"
+                        app:drawableBottomCompat="@drawable/ic_baseline_access_time_24_orange"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                        app:layout_constraintEnd_toStartOf="@+id/view2"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/view"
+                        app:layout_constraintTop_toTopOf="@+id/textView8" />
 
                     <TextView
                         android:id="@+id/tv_times"
-                        style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/tv_difficulty"
-                        app:layout_constraintTop_toTopOf="@+id/tv_difficulty"
+                        android:fontFamily="@font/poppins_medium"
+                        app:layout_constraintEnd_toEndOf="@+id/textView9"
+                        app:layout_constraintStart_toStartOf="@+id/textView9"
+                        app:layout_constraintTop_toTopOf="@+id/tv_servings"
                         tools:text="1jam" />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="0.8dp"
+                        android:layout_height="0dp"
+                        android:background="#F98637"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/textView10"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/tv_times"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="@string/level"
+                        app:drawableBottomCompat="@drawable/ic_baseline_looks_24_orange"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/view2"
+                        app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+                    <TextView
+                        android:id="@+id/tv_difficulty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        app:layout_constraintEnd_toEndOf="@+id/textView10"
+                        app:layout_constraintStart_toStartOf="@+id/textView10"
+                        app:layout_constraintTop_toTopOf="@+id/tv_servings"
+                        tools:text="sangat susah" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="0dp"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title"
-                app:layout_constraintStart_toStartOf="@+id/tv_title"
-                app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-                tools:maxLines="7"
-                tools:text="@tools:sample/lorem/random" />
+                android:background="@drawable/tab_layout_indicator"
+                app:layout_constraintEnd_toEndOf="@+id/materialCardView"
+                app:layout_constraintStart_toStartOf="@+id/materialCardView"
+                app:layout_constraintTop_toBottomOf="@id/materialCardView"
+                app:tabBackground="@color/white"
+                app:tabGravity="start"
+                app:tabIndicator="@drawable/tab_layout_indicator"
+                app:tabIndicatorColor="#F98637"
+                app:tabIndicatorGravity="stretch"
+                app:tabPaddingEnd="32dp"
+                app:tabPaddingStart="32dp"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
 
-            <TextView
-                android:id="@+id/textView2"
-                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/ingredients"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title"
-                app:layout_constraintStart_toStartOf="@+id/tv_title"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_ingredient"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title"
-                app:layout_constraintStart_toStartOf="@+id/tv_title"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"
-                tools:listitem="@layout/item_step" />
-
-            <TextView
-                android:id="@+id/textView3"
-                style="@style/TextAppearance.MaterialComponents.Subtitle2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/how_to"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title"
-                app:layout_constraintStart_toStartOf="@+id/tv_title"
-                app:layout_constraintTop_toBottomOf="@+id/rv_ingredient" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_step"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
+                android:paddingBottom="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title"
-                app:layout_constraintStart_toStartOf="@+id/tv_title"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
-                tools:listitem="@layout/item_step" />
-
-
+                app:layout_constraintEnd_toEndOf="@+id/materialCardView"
+                app:layout_constraintStart_toStartOf="@+id/materialCardView"
+                app:layout_constraintTop_toBottomOf="@id/tab_layout" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/circle_button"
+        android:contentDescription="@string/back_button"
+        android:src="@drawable/ic_baseline_chevron_left_24" />
+
     <ProgressBar
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/orange"
         android:id="@+id/progress_circular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

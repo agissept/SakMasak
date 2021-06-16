@@ -24,5 +24,11 @@
         android:id="@+id/tv_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="@tools:sample/lorem/random" />
+        tools:text="@tools:sample/lorem" />
+
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:background="#cececece" />-->
+
 </LinearLayout>

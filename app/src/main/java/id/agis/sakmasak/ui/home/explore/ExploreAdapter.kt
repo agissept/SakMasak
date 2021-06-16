@@ -11,6 +11,7 @@ import coil.transform.RoundedCornersTransformation
 import id.agis.core.domain.model.RecipeItem
 import id.agis.sakmasak.databinding.ItemRecipeBinding
 import id.agis.sakmasak.ui.detail.DetailActivity
+import id.agis.sakmasak.ui.detail.DetailActivity.Companion.EXTRA_RECIPE_IMAGE_KEY
 import id.agis.sakmasak.ui.detail.DetailActivity.Companion.EXTRA_RECIPE_KEY
 import id.agis.sakmasak.utils.takeMainContent
 
@@ -40,6 +41,7 @@ class ExploreAdapter : PagingDataAdapter<RecipeItem, ExploreAdapter.ViewHolder>(
                 with(holder.itemView.context) {
                     val intent = Intent(this, DetailActivity::class.java).apply {
                         putExtra(EXTRA_RECIPE_KEY, recipe.key)
+                        putExtra(EXTRA_RECIPE_IMAGE_KEY, recipe.thumb)
                     }
                     startActivity(intent)
                 }
