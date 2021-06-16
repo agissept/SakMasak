@@ -1,4 +1,4 @@
-package id.agis.sakmasak.ui.home.favorite
+package id.agis.sakmasak.favorite
 
 import android.content.Intent
 import android.view.LayoutInflater

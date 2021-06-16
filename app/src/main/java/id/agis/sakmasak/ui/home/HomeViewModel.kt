@@ -10,6 +10,4 @@ class HomeViewModel(useCase: RecipeUseCase) : ViewModel() {
     val todayPicks = useCase.geTodayPicks().asLiveData()
 
     val listRecipe = useCase.getListRecipe().cachedIn(viewModelScope)
-
-    val lisFavoriteRecipe = useCase.getAllFavoriteRecipe().asLiveData()
 }
