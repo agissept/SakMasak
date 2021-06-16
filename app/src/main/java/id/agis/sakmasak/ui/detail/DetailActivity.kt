@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import coil.load
@@ -123,7 +122,7 @@ class DetailActivity : AppCompatActivity() {
                         }
                     }
                     is Resource.Error -> {
-                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                       toast(it.message)
                     }
                 }
             }

@@ -14,6 +14,6 @@ fun String.takeMainContent(): String{
     return mainContent
 }
 
-fun Context.toast(content: String){
+fun Context.toast(content: String?){
     Toast.makeText(this, content, Toast.LENGTH_SHORT).show()
 }

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import id.agis.sakmasak.databinding.FragmentExploreBinding
 import id.agis.sakmasak.ui.home.HomeViewModel
 import id.agis.sakmasak.ui.home.loader.HomeLoadStateAdapter
+import id.agis.sakmasak.utils.toast
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -57,9 +57,7 @@ class ExploreFragment : Fragment() {
                 ?: loadState.prepend as? LoadState.Error
 
             errorState?.let {
-                Toast.makeText(
-                    context, "\uD83D\uDE28 Wooops ${it.error}", Toast.LENGTH_LONG
-                ).show()
+                context?.toast("\uD83D\uDE28 Wooops ${it.error}")
             }
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
