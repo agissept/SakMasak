@@ -1,9 +1,8 @@
 package id.agis.sakmasak.ui.splashscreen
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import id.agis.sakmasak.R
+import androidx.appcompat.app.AppCompatActivity
 import id.agis.sakmasak.ui.home.HomeActivity
 
 class SplashScreenActivity : AppCompatActivity() {

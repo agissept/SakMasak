@@ -8,7 +8,6 @@ import id.agis.core.data.source.remote.RemoteDataSource
 import id.agis.core.data.source.remote.network.ApiService
 import id.agis.core.domain.repository.IRecipeRepository
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
