@@ -7,6 +7,8 @@ import id.agis.core.data.source.local.room.RecipeDatabase
 import id.agis.core.data.source.remote.RemoteDataSource
 import id.agis.core.data.source.remote.network.ApiService
 import id.agis.core.domain.repository.IRecipeRepository
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -36,10 +38,14 @@ val networkModule = module {
 val databaseModule = module {
     factory { get<RecipeDatabase>().recipeDao() }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("dicoding".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             RecipeDatabase::class.java, "recipe.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 

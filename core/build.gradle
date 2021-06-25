@@ -65,4 +65,7 @@ dependencies {
     //paging
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 
+    //sql
+    implementation "net.zetetic:android-database-sqlcipher:$sql_chiper_version"
+    implementation "androidx.sqlite:sqlite-ktx:$sqlite_version"
 }
