@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/recycler_view"
     android:layout_height="match_parent"
-    tools:listitem="@layout/item_recipe" />
+    android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:listitem="@layout/item_recipe" />
+
+    <ImageView
+        android:layout_gravity="center"
+        android:id="@+id/iv_empty"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/empty_icon"
+        android:src="@drawable/empty_icon" />
+
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/tv_empty_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/you_not_have_favorite_item"
+        android:textSize="16sp" />
+</LinearLayout>

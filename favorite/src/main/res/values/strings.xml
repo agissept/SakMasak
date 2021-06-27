@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="empty_icon">Empty Icon</string>
+    <string name="you_not_have_favorite_item">You not have favorite item</string>
+</resources>

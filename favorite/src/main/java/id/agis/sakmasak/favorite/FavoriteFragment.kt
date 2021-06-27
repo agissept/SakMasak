@@ -47,10 +47,28 @@ class FavoriteFragment : Fragment() {
 
     private fun observeListFavoriteRecipe() {
         viewModel.lisFavoriteRecipe.observe(viewLifecycleOwner, {
-            adapter.setItem(it)
+            if(it.isEmpty()){
+                showEmptyFavoriteIllustration()
+                binding.recyclerView.visibility = View.GONE
+            }else{
+                hideFavoriteIllustration()
+                adapter.setItem(it)
+                binding.recyclerView.visibility = View.VISIBLE
+            }
         })
 
     }
+
+    private fun showEmptyFavoriteIllustration(){
+        binding.ivEmpty.visibility = View.VISIBLE
+        binding.tvEmptyFavorite.visibility = View.VISIBLE
+    }
+
+    private fun hideFavoriteIllustration(){
+        binding.ivEmpty.visibility = View.GONE
+        binding.tvEmptyFavorite.visibility = View.GONE
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
