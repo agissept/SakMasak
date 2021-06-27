@@ -26,6 +26,10 @@ buildscript {
 
     ext.pagingVersion = '3.0.0-beta02'
 
+    ext.sql_chiper_version = '4.4.0'
+
+    ext.sqlite_version = '2.1.0'
+
     repositories {
         google()
         mavenCentral()
