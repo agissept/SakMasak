@@ -8,8 +8,8 @@ import id.agis.core.domain.usecase.RecipeUseCase
 import kotlinx.coroutines.launch
 
 class DetailViewModel(private val useCase: RecipeUseCase) : ViewModel() {
-    private val _recipe = MutableLiveData<RecipeItem>()
-    val recipe: LiveData<RecipeItem> get() = _recipe
+    private val _recipe = MutableLiveData<RecipeItem?>()
+    val recipe: LiveData<RecipeItem?> get() = _recipe
 
     fun getGetDetailRecipe(recipeKey: String): LiveData<Resource<DetailRecipe>> {
         return useCase.getDetailRecipe(recipeKey).asLiveData()
