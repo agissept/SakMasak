@@ -30,6 +30,8 @@ buildscript {
 
     ext.sqlite_version = '2.1.0'
 
+    ext.leakcanary_version = '2.4'
+
     repositories {
         google()
         mavenCentral()
