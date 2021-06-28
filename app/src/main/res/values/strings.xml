@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Sakmasak</string>
     <string name="recipe_image">Recipe Image</string>
-    <string name="ingredients">Bahan-bahan</string>
-    <string name="how_to">Cara Membuat</string>
     <string name="favorite">Favorite</string>
     <string name="retry">Retry</string>
     <string name="greeting">Hi, John</string>
@@ -10,7 +8,6 @@
     <string name="avatar">avatar</string>
     <string name="image_today_pick">image today pick</string>
     <string name="today_picks">Today picks</string>
-    <string name="explore">Explore</string>
     <string name="back_button">back_button</string>
     <string name="portion">Portion</string>
     <string name="times">Times</string>
